@@ -1,7 +1,5 @@
 # Addendum n° 1 à la fiche de gel : phase B2a (carte des régimes de la KD)
 
-**Rédigé : ____ / ____ / 2026**   **Daté et validé (avant tout lancement) : ____ / ____ / 2026**   **Signature : ____________**
-
 Cet addendum complète `fiche_gel_protocole_v1.md`. Il ne modifie aucune règle de la Phase B. Rien de ce qui suit n'a été calculé au moment de la rédaction : aucune seed de B2a n'a été lancée.
 
 ## 1. Statut de la phase B2a
@@ -56,7 +54,7 @@ Pour chaque condition (dataset, teacher, student) :
 - **Pas de test global** agrégeant les 27 conditions : les décomptes par classe sont descriptifs ; les neuf conditions d'un dataset partagent trois teachers et trois students.
 - Variables de régime (descriptives, jamais utilisées pour définir les classes) : F1 du Student seul sur la validation, qualité du teacher, ratio de capacité.
 
-## 6. Ce qui est interdit après la signature
+## 6. Ce qui est interdit après la rédaction
 
 - Ajouter des seeds, des conditions ou des méthodes à B2a après avoir vu les résultats.
 - Modifier δ, la famille de Holm, les règles de classement ou les hypothèses.
@@ -67,13 +65,5 @@ Pour chaque condition (dataset, teacher, student) :
 ## 7. Traçabilité à enregistrer au lancement
 
 - Empreintes SHA-256 des 9 teachers, de `09_phase_b.py` (avec le plan `b2a`) et du script d'analyse de B2a.
-- Version des bibliothèques (PyTorch, NumPy, SciPy), matériel (2 × RTX A4000), date et heure du lancement.
+- Version des bibliothèques (PyTorch, NumPy, SciPy), matériel (2 × RTX A4000).
 - Écart éventuel avec cet addendum (à noter dans le registre des écarts de la fiche, section 13).
-
-## 8. À vérifier avant de dater
-
-- [ ] Les hypothèses HB1 à HB3 et leurs critères sont ceux que tu veux, sans y changer un mot après avoir regardé de nouveaux résultats.
-- [ ] δ = 0,02, Holm par dataset sur 9 conditions, intervalle de Student : conformes à la fiche de gel.
-- [ ] Le plan `b2a` du script est écrit et testé avec `--smoke`.
-- [ ] Le script d'analyse de B2a est écrit et testé sur de faux CSV.
-- [ ] Le registre des écarts de la fiche (section 13) mentionne l'écart n° 2 (recadrage après les résultats), qui motive B2a.
