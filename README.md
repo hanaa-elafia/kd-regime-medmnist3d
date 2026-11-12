@@ -24,7 +24,7 @@ We study knowledge distillation (KD) on three MedMNIST 3D datasets (OrganMNIST3D
 | `addendum_B2a_v1.md` | Addendum for Phase B2a, in French (hypotheses HB1 to HB3, classification rules); English translation in Supplementary File S2 |
 | `environment.yml` | Conda environment used for the experiments |
 
-The repository also contains the run-level result files (`outputs/`). The nine trained teachers (3 datasets x 3 teachers, files `<dataset>_<teacher>.pt`, with SHA-256 hashes in `sha256.txt`) are attached to the GitHub release **v1.0** of this repository (Releases section). To reuse them, copy each file to `outputs/phaseB_<dataset>/teacher_<teacher>.pt`. Not included: the MedMNIST data, downloaded automatically by the `medmnist` package on first use.
+The repository also contains the run-level result files (`outputs/`) and the nine trained teachers (3 datasets x 3 teachers, files `<dataset>_<teacher>.pt`, SHA-256 hashes in `teachers/sha256.txt`). Six teachers are in `teachers/`. The three `res_w32_b2` teachers (32 MB each, above the GitHub web upload limit) are attached to the GitHub release **v1.0** of this repository (Releases section). To reuse a teacher, copy it to `outputs/phaseB_<dataset>/teacher_<teacher>.pt`. Not included: the MedMNIST data, downloaded automatically by the `medmnist` package on first use.
 
 ## Where each result of the paper comes from
 
