@@ -30,13 +30,11 @@ The repository also contains the run-level result files (`outputs/`). The nine t
 
 | Paper | File | Script |
 |---|---|---|
-| Tables 5 and 6, Figure 2 (Phase B, grey points) | `outputs/phaseB_<dataset>/results*.csv`, `outputs/analysis/` | `10_analysis.py`, `fig_regime_map.py` |
+| Tables 4, 5 and 6, Figure 2 (Phase B, grey points) | `outputs/phaseB_<dataset>/results*.csv`, `outputs/analysis/` | `10_analysis.py`, `fig_regime_map.py` |
 | Table 8 (pivot) and Section 3.7 (schedules) | `outputs/analysis/` | `10_analysis.py`, `12_fuzzy_compare.py` |
 | Table 7 and Figure 2 (Phase B2a, coloured points), hypotheses HB1 to HB3 | `outputs/analysis_b2a/b2a_conditions.csv`, `b2a_hypotheses.csv` | `13_b2a_analysis.py`, `fig_regime_map.py` |
 | Final temperature T (Section 3.7) | `outputs/phaseB_<dataset>/epochs*.csv` (column `T`, last epoch) | see below |
 | Integrity of the B2a result files | `outputs/b2a_resultats_sha256.txt`, `outputs/b2a_versions.txt` | `sha256sum -c` |
-
-[TO CHECK: table numbers match the final PDF]
 
 ## Environment
 
