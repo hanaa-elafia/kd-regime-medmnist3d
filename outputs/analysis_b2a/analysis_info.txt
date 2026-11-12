@@ -1,0 +1,9 @@
+Analyse B2a lancee le 2026-11-02 17:57:39
+delta=0.02 alpha=0.05 seeds=15-24 holm=par dataset sur 9 conditions
+
+ab153846e8c40294de9e98f9aef950ed5cd407a4d5a6bc4d9fad79f06243c69e  outputs/phaseB2a_organmnist3d/results_gpu0.csv
+ad4ecd9b3aec2094069103a6c8fa1d6d8cfc45b03fc0fa5b10a06b84fefbc232  outputs/phaseB2a_organmnist3d/results_gpu1.csv
+5ee5d0bcdb283891fbd0c27c8ab5213a1a2c2f14e4584abe8656f2b61997fd80  outputs/phaseB2a_adrenalmnist3d/results_gpu0.csv
+8adae0b458f1d19bf1133b0248c4f672d12159499485ea63b18dbb24031aef28  outputs/phaseB2a_adrenalmnist3d/results_gpu1.csv
+d37c81b150e6d99b71923f10bb6b164d279727ca57d0b65d37d1038956f3791b  outputs/phaseB2a_fracturemnist3d/results_gpu0.csv
+e3c758c5c09aae1c44c27dfb044723613a49f0f53d20676c1f5c59d269af156e  outputs/phaseB2a_fracturemnist3d/results_gpu1.csv

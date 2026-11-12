@@ -1,0 +1,4 @@
+dataset,teacher,seed,val_nll,val_macro_f1,val_bal_acc,val_acc,val_ece,val_auc,test_nll,test_macro_f1,test_bal_acc,test_acc,test_ece,test_auc,best_epoch,train_time_s,T_min,T_max,alpha_min,alpha_max,diverged,epochs,params,mflops
+organmnist3d,res_w16_b1,0,0.0022899748291820288,1.0,1.0,1.0,0.0021680812321396292,1.0,,,,,,,58,79.32178258895874,,,0.0,0.0,False,80,898779,1057.49376
+organmnist3d,res_w32_b1,0,0.0014678060542792082,1.0,1.0,1.0,0.0014277326660248058,1.0,,,,,,,62,151.20091366767883,,,0.0,0.0,False,80,3588523,4192.036352
+organmnist3d,res_w32_b2,0,0.005688473116606474,1.0,1.0,1.0,0.004214710408875888,1.0,,,,,,,56,271.89244174957275,,,0.0,0.0,False,80,8290603,8893.523456

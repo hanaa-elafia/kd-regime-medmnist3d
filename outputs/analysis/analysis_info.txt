@@ -1,0 +1,12 @@
+Analyse lancee le 2026-10-04 00:25:47
+delta=0.02 alpha=0.05 n_boot=10000 boot_seed=12345
+metrique primaire=test_macro_f1 ; secondaires=['test_bal_acc', 'test_auc', 'test_ece', 'test_nll']
+comparaisons cles=['fts-student', 'fas-student', 'dfs-student', 'A:fts-vanilla', 'B:fas-vanilla', 'C:fts-fas', 'D1:dfs-fts', 'D2:dfs-fas', 'E:fts-lin_T', 'E:fas-lin_A', 'E:dfs-lin_TA', 'F:fts-static', 'F:fas-static', 'F:dfs-static']
+
+Empreintes SHA-256 :
+18d67b6188964b595a8e9326ec927686dc3e48463c1a32959aadb23d0e947608  outputs/phaseB_organmnist3d/results_gpu0.csv
+f8d49bba9b6e373a5f2b7bdeee381759637aa19b6ab30e149c726c19d7ae3bac  outputs/phaseB_organmnist3d/results_gpu1.csv
+42f5976c46b23769f89dfd1ee52080800647348705724731564a979c5543b45a  outputs/phaseB_adrenalmnist3d/results_gpu0.csv
+b5b2cb9a1445e1fcbf14a061441f09044d09d263add3e8376b1143c88098d40c  outputs/phaseB_adrenalmnist3d/results_gpu1.csv
+ebbc1bec247df9ff8ab141badd89000bd852eaa4c842a99bbb03753525da8af8  outputs/phaseB_fracturemnist3d/results_gpu0.csv
+1c85f069ff5fb06d81cb6d413e75f55bac91c779fb9636784dc0fac83a6c7e91  outputs/phaseB_fracturemnist3d/results_gpu1.csv

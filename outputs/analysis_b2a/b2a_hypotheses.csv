@@ -1,0 +1,4 @@
+hypothese,dataset,verdict,detail
+HB1,fracturemnist3d,partiellement soutenue,7/9 conditions de classe A ; gain moyen +0.0639 (delta = 0.02)
+HB2,organmnist3d,refutee,"classe A : 2, B : 6, C : 0, non classees : 1"
+HB3,adrenalmnist3d,refutee,S1 : 0/3 de classe A ; S2 et S3 : 0/6 de classe A
