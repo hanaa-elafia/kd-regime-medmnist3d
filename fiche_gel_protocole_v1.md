@@ -1,11 +1,10 @@
-# Fiche de gel du protocole — v1 (à valider)
+# Fiche de gel du protocole — v1
 
 Étude : *When Does Fuzzy Scheduling Help Knowledge Distillation? A Regime Analysis on 3D Medical Image Classification*
 
-**Date de gel : ____ / ____ / 2026** (à remplir quand tu valides ; avant cette date, rien n'est gelé)
-**Rédigée le :** 2 octobre 2026, sur la base du pilote (3 datasets, 3 seeds, validation seulement) et du guide v3.
+Rédigée avant la Phase B, sur la base du pilote (3 datasets, 3 seeds, validation seulement).
 
-**Après le gel : plus aucune modification** du protocole, des bornes, des règles fuzzy, des teachers, des students ou de la définition des verdicts. Toute adaptation à un dataset doit être déclarée comme telle (règle 7 du guide).
+**Après le gel : plus aucune modification** du protocole, des bornes, des règles fuzzy, des teachers, des students ou de la définition des verdicts. Toute adaptation à un dataset doit être déclarée comme telle.
 
 ## 1. Datasets (MedMNIST 3D, 28³)
 
@@ -87,7 +86,7 @@ Le teacher est en mode évaluation, gelé, et reçoit la **même entrée augment
 | Haute | Bas | Moyen | Moyen |
 
 - **Défuzzification (moyenne pondérée de singletons) :** w_k = max, sur les règles de sortie k, de min(μ_p, μ_g) ; u = (0,5 · w_moyen + 1 · w_haut) / (w_bas + w_moyen + w_haut) ; T = 2 + 6u ; α = 0,2 + 0,6u.
-- **Propriétés connues (à écrire dans l'article) :** pour p < 0,5 et g ≤ 0,5, le contrôleur est identique à Linear ; en seconde moitié, il garde T et α plus hauts quand l'écart persiste ; T et α bougent ensemble (même u).
+- **Propriétés connues :** pour p < 0,5 et g ≤ 0,5, le contrôleur est identique à Linear ; en seconde moitié, il garde T et α plus hauts quand l'écart persiste ; T et α bougent ensemble (même u). *(Première propriété inexacte : voir l'erratum n° 1, section 13.)*
 - FTS ne change que T, FAS ne change que α, DFS change les deux avec les mêmes règles.
 
 ## 7. Plan d'expériences
@@ -146,32 +145,33 @@ Temps total estimé : environ 17 h pour le GPU 0 et 13 h pour le GPU 1 (estimati
 - Teachers, students, augmentation, bornes et défuzzification choisis sur la validation (augmentation : Organ et Fracture) : aucun dataset n'est une validation externe de ces choix.
 - Validations petites (98, 103 et 161 volumes) : sélection de checkpoint bruitée.
 - Static est choisi sur la validation des 3 premières seeds (favorisé sur la validation, pas sur le test).
-- Une seule base de règles fuzzy ; T et α bougent ensemble ; le fuzzy est identique à Linear dans la première moitié de l'entraînement.
+- Une seule base de règles fuzzy ; T et α bougent ensemble ; le fuzzy est identique à Linear dans la première moitié de l'entraînement *(inexact : voir l'erratum n° 1, section 13)*.
 - Une marge de teacher acceptée par la règle ne garantit pas un gain de KD (vu sur Adrenal et Fracture).
 - Résolution 28³ seulement ; pas d'identifiants patients.
 
 ## 12. Validation
 
-À cocher avant de dater :
+Vérifications faites avant le gel :
 
-- [ ] Script de la Phase B (`09_phase_b.py`) testé : contrôle de cohérence avec le pilote (`--check`, aucun test) et test rapide (`--smoke`).
-- [ ] Gardes de reprise vérifiées : pas de jobs en double, nombre d'epochs identique à la reprise.
-- [ ] Les valeurs de cette fiche correspondent au code (bornes, grille, règles, δ, seeds).
-- [ ] Les 9 teachers peuvent être entraînés avec le protocole de la section 3.
-
-Gelé le : ____ / ____ / 2026 &nbsp;&nbsp;&nbsp; Signature : ____________
-
+- Script de la Phase B (`09_phase_b.py`) testé : contrôle de cohérence avec le pilote (`--check`, aucun test) et test rapide (`--smoke`).
+- Gardes de reprise vérifiées : pas de jobs en double, nombre d'epochs identique à la reprise.
+- Les valeurs de cette fiche correspondent au code (bornes, grille, règles, δ, seeds).
+- Les 9 teachers peuvent être entraînés avec le protocole de la section 3.
 
 ## 13. Registre des écarts après le gel
 
-Cette section note les écarts constatés après la signature. Elle ne modifie aucune règle du protocole.
+Cette section note les écarts constatés après le gel. Elle ne modifie aucune règle du protocole.
 
-**Écart n° 1 (2 octobre 2026) : exposition partielle de métriques de test pendant la Phase B.** Le fichier `results_gpu1.csv` d'OrganMNIST3D a été ouvert et son contenu (colonnes `test_*` comprises) a été collé dans la conversation de travail avec l'assistant, avant la fin des runs. Portée : OrganMNIST3D seulement, couple res_w32_b2 × S1, seeds 0 à 4 pour Vanilla, lin_T, lin_A, lin_TA, FTS, FAS et DFS, et seeds 0 à 2 pour le point Static retenu (soit 8 méthodes). Aucune valeur de test n'a été commentée ni utilisée. Aucun choix du protocole n'a été modifié, aucun run n'a été relancé ni arrêté, et les scripts sont inchangés. À déclarer dans l'article (section Limites).
+**Écart n° 1 : exposition partielle de métriques de test pendant la Phase B.** Le fichier `results_gpu1.csv` d'OrganMNIST3D a été ouvert et son contenu (colonnes `test_*` comprises) a été collé dans la conversation de travail avec l'assistant, avant la fin des runs. Portée : OrganMNIST3D seulement, couple res_w32_b2 × S1, seeds 0 à 4 pour Vanilla, lin_T, lin_A, lin_TA, FTS, FAS et DFS, et seeds 0 à 2 pour le point Static retenu (soit 8 méthodes). Aucune valeur de test n'a été commentée ni utilisée. Aucun choix du protocole n'a été modifié, aucun run n'a été relancé ni arrêté, et les scripts sont inchangés. À déclarer dans l'article (section Limites).
 
 **Mesures prises :** (1) l'analyse finale reste celle de cette fiche (sections 8 et 9) ; (2) le plan d'analyse est celui des sections 8 et 9 de cette fiche ; le script d'analyse (`10_...`) sera écrit après la fin des runs et se limitera à implémenter ce plan à la lettre ; toute différence entre le script et la fiche sera déclarée dans l'article ; (3) pour consulter les résultats pendant les runs, on lit les CSV sans leurs colonnes de test (`usecols=lambda c: not c.startswith("test_")`).
 
-**Précisions d'implémentation du plan d'analyse (2 octobre 2026, écrites avant toute analyse).** La fiche est ambiguë sur trois points ; le script `10_analysis.py` les tranche ainsi, et l'article le déclarera : (i) l'ablation D (FTS + FAS contre DFS) est évaluée par deux comparaisons, DFS contre FTS et DFS contre FAS ; (ii) la correction de Holm de la portée exploratoire (9 couples, 5 seeds) s'applique à chaque famille de comparaisons, par dataset, en regroupant tous les couples ; la portée confirmatoire (couple pivot, 15 seeds) a ses propres familles ; (iii) en cas de chevauchement « gagne » et « égalité », l'ordre de la fiche prévaut (gagne d'abord), une colonne signalant les gains inférieurs à δ. Le script s'arrête sans rien analyser si un contrôle d'intégrité échoue (jobs manquants ou en double, epochs différentes, run divergent, test présent pour la grille ou absent pour un run retenu, point Static non reproductible depuis la validation).
+**Précisions d'implémentation du plan d'analyse (écrites avant toute analyse).** La fiche est ambiguë sur trois points ; le script `10_analysis.py` les tranche ainsi, et l'article le déclarera : (i) l'ablation D (FTS + FAS contre DFS) est évaluée par deux comparaisons, DFS contre FTS et DFS contre FAS ; (ii) la correction de Holm de la portée exploratoire (9 couples, 5 seeds) s'applique à chaque famille de comparaisons, par dataset, en regroupant tous les couples ; la portée confirmatoire (couple pivot, 15 seeds) a ses propres familles ; (iii) en cas de chevauchement « gagne » et « égalité », l'ordre de la fiche prévaut (gagne d'abord), une colonne signalant les gains inférieurs à δ. Le script s'arrête sans rien analyser si un contrôle d'intégrité échoue (jobs manquants ou en double, epochs différentes, run divergent, test présent pour la grille ou absent pour un run retenu, point Static non reproductible depuis la validation).
 
-**Écart n° 2 (3 octobre 2026) : changement de cadrage de l'article après les résultats.** Le plan de cette fiche était centré sur la comparaison de schedules de KD, les ordonnanceurs fuzzy en tête. Après avoir vu les résultats de la Phase B et de l'analyse prévue, l'angle de l'article a été déplacé vers une carte des régimes où la KD aide (trois datasets, trois teachers, trois students) ; les fuzzy deviennent des schedules évalués parmi d'autres. Aucun verdict, aucune règle et aucun script de cette fiche n'ont été modifiés. La carte des régimes est rendue confirmatoire par une phase B2a (seeds 15 à 24, Student seul et Vanilla sur les 27 conditions, mêmes teachers, règles de classement et hypothèses déclarées dans un addendum daté avant tout calcul). À déclarer dans l'article.
+**Écart n° 2 : changement de cadrage de l'article après les résultats.** Le plan de cette fiche était centré sur la comparaison de schedules de KD, les ordonnanceurs fuzzy en tête. Après avoir vu les résultats de la Phase B et de l'analyse prévue, l'angle de l'article a été déplacé vers une carte des régimes où la KD aide (trois datasets, trois teachers, trois students) ; les fuzzy deviennent des schedules évalués parmi d'autres. Aucun verdict, aucune règle et aucun script de cette fiche n'ont été modifiés. La carte des régimes est rendue confirmatoire par une phase B2a (seeds 15 à 24, Student seul et Vanilla sur les 27 conditions, mêmes teachers, règles de classement et hypothèses déclarées dans un addendum rédigé avant tout calcul). À déclarer dans l'article.
 
-**Écart n° 3 (3 octobre 2026) : analyses exploratoires non prévues par cette fiche**, réalisées après l'analyse prévue et à étiqueter comme telles dans l'article : moyennes des gains sur les 9 conditions de chaque dataset, comparaison des méthodes entre elles et classement (avec test de permutation par condition), gains par teacher et par student, corrélations avec des variables de régime (non valables statistiquement : pseudo-réplication), tableaux de gains par métrique secondaire (balanced accuracy, AUC, ECE, NLL), comparaison FTS, FAS et DFS entre eux sur toutes les métriques. Aucune n'a servi à modifier le protocole.
+**Écart n° 3 : analyses exploratoires non prévues par cette fiche**, réalisées après l'analyse prévue et à étiqueter comme telles dans l'article : moyennes des gains sur les 9 conditions de chaque dataset, comparaison des méthodes entre elles et classement (avec test de permutation par condition), gains par teacher et par student, corrélations avec des variables de régime (non valables statistiquement : pseudo-réplication), tableaux de gains par métrique secondaire (balanced accuracy, AUC, ECE, NLL), comparaison FTS, FAS et DFS entre eux sur toutes les métriques. Aucune n'a servi à modifier le protocole.
+
+**Erratum n° 1 : description du contrôleur (sections 6 et 11).** Les phrases « pour p < 0,5 et g ≤ 0,5, le contrôleur est identique à Linear » (section 6) et « le fuzzy est identique à Linear dans la première moitié » (section 11) sont inexactes. Vérifié sur la fonction fuzzy de `09_phase_b.py` : le contrôleur est égal à Linear quand g = 0 ; pour p ≤ 0,5 et g ≤ 0,5, il s'en écarte d'au plus 0,043 sur u (environ 0,26 sur T et 0,026 sur α) ; plus tard, ou quand g > 0,5, il garde T et α plus hauts (jusqu'à 0,54 sur u). Le code, les règles et les résultats ne changent pas : seule la description était fausse. L'article utilise la description corrigée.
+
+**Écart n° 4 : addendum B2a non enregistré à l'extérieur.** L'addendum (`addendum_B2a_v1.md`) a été rédigé avant tout run B2a, mais il n'a pas été enregistré à l'extérieur avant le lancement des runs. Son contenu n'a pas été modifié ensuite.
