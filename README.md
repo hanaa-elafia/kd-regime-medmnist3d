@@ -24,11 +24,11 @@ We study knowledge distillation (KD) on three MedMNIST 3D datasets (OrganMNIST3D
 | `addendum_B2a_v1.md` | Addendum for Phase B2a, in French (hypotheses HB1 to HB3, classification rules); English translation in Supplementary File S2 |
 | `environment.yml` | Conda environment used for the experiments |
 
-Not included in this repository: the MedMNIST data (downloaded automatically by the `medmnist` package on first use), the trained teachers and the run-level result files. The teachers and the result files are archived on Zenodo: **[Zenodo link and DOI to be added]**.
+The repository also contains the run-level result files (`outputs/`). The nine trained teachers (3 datasets x 3 teachers, files `<dataset>_<teacher>.pt`, with SHA-256 hashes in `sha256.txt`) are attached to the GitHub release **v1.0** of this repository (Releases section). To reuse them, copy each file to `outputs/phaseB_<dataset>/teacher_<teacher>.pt`. Not included: the MedMNIST data, downloaded automatically by the `medmnist` package on first use.
 
 ## Where each result of the paper comes from
 
-| Paper | File (in the Zenodo archive) | Script |
+| Paper | File | Script |
 |---|---|---|
 | Tables 5 and 6, Figure 2 (Phase B, grey points) | `outputs/phaseB_<dataset>/results*.csv`, `outputs/analysis/` | `10_analysis.py`, `fig_regime_map.py` |
 | Table 8 (pivot) and Section 3.7 (schedules) | `outputs/analysis/` | `10_analysis.py`, `12_fuzzy_compare.py` |
@@ -83,7 +83,7 @@ Test data are evaluated once per retained run and are never used to choose a tea
 ## Rules of the protocol
 
 - The protocol (`fiche_gel_protocole_v1.md`) was frozen before Phase B.
-- The addendum for Phase B2a (`addendum_B2a_v1.md`) contains the hypotheses and the classification rules, written before any B2a run. It was not formally dated and signed before the B2a runs started; its content was not changed afterwards. This is declared as a deviation in the paper.
+- The addendum for Phase B2a (`addendum_B2a_v1.md`) contains the hypotheses and the classification rules, written before any B2a run. It was not registered externally before the B2a runs started; its content was not changed afterwards. This is declared as a deviation in the paper.
 - All deviations are listed in the register of deviations (end of `fiche_gel_protocole_v1.md`) and in the paper.
 - Analyses not planned in the protocol are marked as exploratory in the paper.
 
