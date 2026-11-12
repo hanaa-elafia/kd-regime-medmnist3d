@@ -1,6 +1,6 @@
 # When does knowledge distillation help small 3D medical image classifiers?
 
-Code and frozen protocol for the study *"When does knowledge distillation help small 3D medical image classifiers? A confirmatory study on three MedMNIST datasets"*.
+Code and frozen protocol for the study *"When does knowledge distillation help small 3D medical image classifiers? Distinct regimes across three MedMNIST datasets"*.
 
 We study knowledge distillation (KD) on three MedMNIST 3D datasets (OrganMNIST3D, AdrenalMNIST3D, FractureMNIST3D; 28x28x28 voxels; official splits), with 3 teachers (3D ResNets), 3 students (small 3D CNNs) and 27 teacher-student-dataset conditions. We compare several ways to set the temperature T and the loss weight alpha: fixed (vanilla, tuned static), linear in time, and a fuzzy controller (FTS, FAS, DFS). The study does not propose a new method. It maps where KD is useful, with a frozen protocol, a protected test set, paired seeds, confidence intervals, Holm correction, an equivalence margin and a confirmatory phase with new seeds (Phase B2a).
 
