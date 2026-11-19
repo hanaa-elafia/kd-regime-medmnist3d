@@ -1,4 +1,4 @@
-# When does knowledge distillation help small 3D medical image classifiers?
+# When does knowledge distillation help small 3D medical image classifiers? Distinct regimes across three MedMNIST datasets
 
 Code and frozen protocol for the study *"When does knowledge distillation help small 3D medical image classifiers? Distinct regimes across three MedMNIST datasets"*.
 
@@ -23,6 +23,8 @@ We study knowledge distillation (KD) on three MedMNIST 3D datasets (OrganMNIST3D
 | `fiche_gel_protocole_v1.md` | Frozen protocol, in French (hypotheses, bounds, statistics, verdict rules, register of deviations); English translation in Supplementary File S1 of the paper |
 | `addendum_B2a_v1.md` | Addendum for Phase B2a, in French (hypotheses HB1 to HB3, classification rules); English translation in Supplementary File S2 |
 | `environment.yml` | Conda environment used for the experiments |
+| `teachers/` | Six of the nine trained teachers and `sha256.txt` (the three `res_w32_b2` teachers are in release v1.0) |
+| `outputs/` | Run-level result files of Phase B and Phase B2a, and analysis outputs |
 
 The repository also contains the run-level result files (`outputs/`) and the nine trained teachers (3 datasets x 3 teachers, files `<dataset>_<teacher>.pt`, SHA-256 hashes in `teachers/sha256.txt`). Six teachers are in `teachers/`. The three `res_w32_b2` teachers (32 MB each, above the GitHub web upload limit) are attached to the GitHub release **v1.0** of this repository (Releases section). To reuse a teacher, copy it to `outputs/phaseB_<dataset>/teacher_<teacher>.pt`. Not included: the MedMNIST data, downloaded automatically by the `medmnist` package on first use.
 
@@ -72,7 +74,7 @@ The scripts expect the working directory to contain `scripts/` and `outputs/`.
    for ds in ["organmnist3d","adrenalmnist3d","fracturemnist3d"]:
        e=pd.concat([pd.read_csv(f,usecols=["epoch","T","method"]) for f in glob.glob(f"outputs/phaseB_{ds}/epochs*.csv")])
        e=e[(e.epoch==e.epoch.max())&e.method.isin(["lin_T","lin_TA","fts","dfs"])]
-       print(ds, e.groupby("method").T.agg(["mean","count"]).round(2).to_dict("index"))
+       print(ds, e.groupby("method")["T"].agg(["mean","count"]).round(2).to_dict("index"))
    E
    ```
 
